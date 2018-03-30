@@ -48,6 +48,21 @@ public class Sort {
         return tableToSort;
     }
 
+    public static int[] InsertionBinarySort(int[] tableSort){
+        int[] tableToSort = tableSort.clone();
+        for(int i = 1; i < tableToSort.length; i++){
+            int actVal = tableSort[i];
+            int indexShift = BinarySearchForSortingActive(0, i, tableToSort, actVal);
+            int j = i-1;
+            while (j >= indexShift){
+                tableToSort[j+1] = tableToSort[j];
+                j--;
+            }
+            tableToSort[j+1] = actVal;
+        }
+        return tableToSort;
+    }
+
     private static int BinarySearchActive(int di, int ui, int[] table, int value){
         if(ui >= di){
             int mi = di + (ui-di)/2;
@@ -81,9 +96,5 @@ public class Sort {
         }
 
         return mi;
-    }
-
-    public static int BinarySearchForSorting(int[] tableToFind, int valueToFind){
-        return BinarySearchForSortingActive(0, tableToFind.length-1, tableToFind, valueToFind);
     }
 }

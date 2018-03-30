@@ -34,5 +34,11 @@ public class SortTester {
         }
         System.out.println();
 
+        int[] BinaryInsertionSorted = Sort.InsertionBinarySort(tableSorting);
+        for (int item : BinaryInsertionSorted){
+            System.out.printf("%3d", item);
+        }
+        System.out.println();
+
     }
 }

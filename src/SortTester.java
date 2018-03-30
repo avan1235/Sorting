@@ -34,8 +34,5 @@ public class SortTester {
         }
         System.out.println();
 
-        int valueToFind = inputKeyboard.nextInt();
-        System.out.println(Sort.BinarySearch(InsertionSorted, valueToFind));
-        System.out.println(Sort.BinarySearchForSorting(InsertionSorted, valueToFind));
     }
 }

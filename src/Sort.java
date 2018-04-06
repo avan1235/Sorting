@@ -102,7 +102,7 @@ public class Sort {
         int[] tableToSort = tableSort.clone();
         for(int i = 1; i < tableToSort.length; i++){
             int actValue = tableToSort[i];
-            int l = 0;
+            int l = -1;
             int p = i;
             while (p-l > 1){
                 int s = (l+p)/2;

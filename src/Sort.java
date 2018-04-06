@@ -97,4 +97,28 @@ public class Sort {
 
         return mi;
     }
+
+    public static int[] InsertionBinarySortInline(int[] tableSort){
+        int[] tableToSort = tableSort.clone();
+        for(int i = 1; i < tableToSort.length; i++){
+            int actValue = tableToSort[i];
+            int l = 0;
+            int p = i;
+            while (p-l > 1){
+                int s = (l+p)/2;
+                if (actValue < tableToSort[s]){
+                    p = s;
+                }
+                else{
+                    l = s;
+                }
+            }
+            int j = l+1;
+            for (int k = i; k > j; k--){
+                tableToSort[k] = tableToSort[k-1];
+            }
+            tableToSort[j] = actValue;
+        }
+        return tableToSort;
+    }
 }

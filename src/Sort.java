@@ -98,7 +98,7 @@ public class Sort {
         return mi;
     }
 
-    public static int[] InsertionBinarySortInline(int[] tableSort){
+    public static int[] InsertionBinarySortInline(int[] tableSort){ 
         int[] tableToSort = tableSort.clone();
         for(int i = 1; i < tableToSort.length; i++){
             int actValue = tableToSort[i];
@@ -119,6 +119,60 @@ public class Sort {
             }
             tableToSort[j] = actValue;
         }
+        return tableToSort;
+    }
+
+    public static void Merge(int[] tableMerge, int p, int q, int r){
+        int num1 = q-p+1;
+        int num2 = r-q;
+
+        int[] L = new int[num1];
+        int[] R = new int[num2];
+
+        for(int i = 0; i < num1; i++){
+            L[i] = tableMerge[p+i];
+        }
+        for(int i = 0; i < num2; i++){
+            R[i] = tableMerge[q+1+i];
+        }
+
+        int i1 = 0, i2 = 0;
+        int mi = p;
+        while (i1 < num1 && i2 < num2){
+            if(L[i1] <= R[i2]){
+                tableMerge[mi] = L[i1];
+                i1++;
+            }
+            else{
+                tableMerge[mi] = R[i2];
+                i2++;
+            }
+            mi++;
+        }
+        while(i1 < num1){
+            tableMerge[mi] = L[i1];
+            i1++;
+            mi++;
+        }
+        while(i2 < num2) {
+            tableMerge[mi] = R[i2];
+            i2++;
+            mi++;
+        }
+    }
+
+    public static void MergeSortActive(int[] tableSort, int p, int r){
+        if(p < r){
+            int q = p +((r-p)/2);
+            Sort.MergeSortActive(tableSort, p, q);
+            Sort.MergeSortActive(tableSort, q+1, r);
+            Sort.Merge(tableSort, p, q, r);
+        }
+    }
+
+    public static int[] MergeSort(int[] tableSort){
+        int[] tableToSort = tableSort.clone();
+        Sort.MergeSortActive(tableToSort, 0, tableToSort.length-1);
         return tableToSort;
     }
 }

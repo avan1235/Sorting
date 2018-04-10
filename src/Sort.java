@@ -122,7 +122,7 @@ public class Sort {
         return tableToSort;
     }
 
-    public static void Merge(int[] tableMerge, int p, int q, int r){
+    private static void Merge(int[] tableMerge, int p, int q, int r){
         int num1 = q-p+1;
         int num2 = r-q;
 
@@ -161,7 +161,7 @@ public class Sort {
         }
     }
 
-    public static void MergeSortActive(int[] tableSort, int p, int r){
+    private static void MergeSortActive(int[] tableSort, int p, int r){
         if(p < r){
             int q = p +((r-p)/2);
             Sort.MergeSortActive(tableSort, p, q);

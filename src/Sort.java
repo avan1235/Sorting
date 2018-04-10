@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Created by Maciej Procyk on 30.03.2018.
  */
@@ -170,9 +172,60 @@ public class Sort {
         }
     }
 
+    private static final int MAX_MERGE_SORT = 5;
+
+    private static void InsertionBinarySortInlineForMerge(int[] tableSort, int m, int w){
+        int[] tableToSort = Arrays.copyOfRange(tableSort, m, w+1); // Pay attention at indexes
+        for(int i = 1; i < tableToSort.length; i++){                  // The second one (w+1) will NOT be copied
+            int actValue = tableToSort[i];
+            int l = -1;
+            int p = i;
+            while (p-l > 1){
+                int s = (l+p)/2;
+                if (actValue < tableToSort[s]){
+                    p = s;
+                }
+                else{
+                    l = s;
+                }
+            }
+            int j = l+1;
+            for (int k = i; k > j; k--){
+                tableToSort[k] = tableToSort[k-1];
+            }
+            tableToSort[j] = actValue;
+        }
+        // Copying the mini-sorted table to the orginal one
+        // which is going to be merged
+
+        for(int i = 0; i < w-m+1; i++){
+            tableSort[m+i] = tableToSort[i];
+        }
+    }
+
+    private static void MergeAndInsertionSortActive(int[] tableSort, int p, int r){
+        if(p < r){
+            if (r - p > MAX_MERGE_SORT){
+                int q = p +((r-p)/2);
+                Sort.MergeAndInsertionSortActive(tableSort, p, q);
+                Sort.MergeAndInsertionSortActive(tableSort, q+1, r);
+                Sort.Merge(tableSort, p, q, r);
+            }
+            else{
+                Sort.InsertionBinarySortInlineForMerge(tableSort, p, r);
+            }
+        }
+    }
+
     public static int[] MergeSort(int[] tableSort){
         int[] tableToSort = tableSort.clone();
         Sort.MergeSortActive(tableToSort, 0, tableToSort.length-1);
+        return tableToSort;
+    }
+
+    public static int[] MergeAndInsertionSort(int[] tableSort){
+        int[] tableToSort = tableSort.clone();
+        Sort.MergeAndInsertionSortActive(tableToSort, 0, tableToSort.length-1);
         return tableToSort;
     }
 }

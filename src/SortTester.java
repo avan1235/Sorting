@@ -59,5 +59,12 @@ public class SortTester {
         }
         System.out.println();
 
+        System.out.println("MergeAndInsertionSort:");
+        int[] MergeInsertionSorted = Sort.MergeAndInsertionSort(tableSorting);
+        for (int item : MergeInsertionSorted){
+            System.out.printf("%3d", item);
+        }
+        System.out.println();
+
     }
 }

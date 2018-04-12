@@ -228,4 +228,42 @@ public class Sort {
         Sort.MergeAndInsertionSortActive(tableToSort, 0, tableToSort.length-1);
         return tableToSort;
     }
+
+    private static void QuickSortActive(int[] tableSort, int l, int r){
+        int i = l;
+        int j = r;
+        int qValue = tableSort[l + ((r-l)/2)];
+
+        while(i <= j){
+            while (tableSort[i] < qValue){
+                i++;
+            }
+            while(tableSort[j] > qValue){
+                j--;
+            }
+            if (i < j){
+                tableSort[i] ^= tableSort[j];
+                tableSort[j] ^= tableSort[i];
+                tableSort[i] ^= tableSort[j];
+                i++;
+                j--;
+            }
+            else if(i == j){
+                i++; // Can't swap in tricky way when i == j
+                j--;
+            }
+        }
+        if (i < r){
+            Sort.QuickSortActive(tableSort, i, r);
+        }
+        if(j > l){
+            Sort.QuickSortActive(tableSort, l, j);
+        }
+    }
+
+    public static  int[] QuickSort(int[] tableSort){
+        int[] tableToSort = tableSort.clone();
+        Sort.QuickSortActive(tableToSort, 0, tableToSort.length-1);
+        return  tableToSort;
+    }
 }

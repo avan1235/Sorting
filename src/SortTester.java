@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class SortTester {
     public static void main(String[] args){
         Scanner inputKeyboard = new Scanner(System.in);
-        int tableSize = 20;//inputKeyboard.nextInt();
+        int tableSize = 7;//inputKeyboard.nextInt();
 
         int[] tableSorting = new int[tableSize];
 
@@ -66,5 +66,11 @@ public class SortTester {
         }
         System.out.println();
 
+        System.out.println("QuickSort:");
+        int[] QuickSorted = Sort.QuickSort(tableSorting);
+        for (int item : QuickSorted){
+            System.out.printf("%3d", item);
+        }
+        System.out.println();
     }
 }

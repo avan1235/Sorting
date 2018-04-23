@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -6,7 +7,7 @@ import java.util.Scanner;
 public class SortTester {
     public static void main(String[] args){
         Scanner inputKeyboard = new Scanner(System.in);
-        int tableSize = 7;//inputKeyboard.nextInt();
+        int tableSize = 5;//inputKeyboard.nextInt();
 
         int[] tableSorting = new int[tableSize];
 
@@ -72,5 +73,14 @@ public class SortTester {
             System.out.printf("%3d", item);
         }
         System.out.println();
+
+        System.out.println("MinNumber:");
+        System.out.println(Sort.findMinInt(tableSorting));
+
+        System.out.println("MaxNumber:");
+        System.out.println(Sort.findMaxInt(tableSorting));
+
+        System.out.println("MinAndMaxNumber:");
+        System.out.println(Arrays.toString(Sort.findMinAndMaxInt(tableSorting)));
     }
 }

@@ -229,6 +229,15 @@ public class Sort {
         return tableToSort;
     }
 
+    /**
+     * Allows sorting by using quicksort when table and indexes of
+     * the begining and end are given
+     * @param tableSort is a table to sort by the method
+     * @param l is the left index that WILL be sorted too
+     * @param r is the right index that WILL be sorted too
+     * @return nothing to return, changes the orginal table
+     */
+
     private static void QuickSortActive(int[] tableSort, int l, int r){
         int i = l;
         int j = r;
@@ -265,5 +274,58 @@ public class Sort {
         int[] tableToSort = tableSort.clone();
         Sort.QuickSortActive(tableToSort, 0, tableToSort.length-1);
         return  tableToSort;
+    }
+
+    public static int findMaxInt(int... values){
+        int largest = values[0];
+        for (int i = 1; i < values.length; i++){
+            if (values[i] > largest){
+                largest = values[i];
+            }
+        }
+        return largest;
+    }
+
+    public static int findMinInt(int... values){
+        int smallest = values[0];
+        for(int i = 0; i < values.length; i++){
+            if (values[i] < smallest){
+                smallest = values[i];
+            }
+        }
+        return smallest;
+    }
+
+    public static int[] findMinAndMaxInt(int... values){
+        int[] mini = new int[values.length/2];
+        int[] maxi = new int[values.length/2];
+        int index = 0;
+
+        int i = 0;
+        while((i + 1) < values.length){
+            if(values[i] < values[i+1]){
+                mini[index] = values[i];
+                maxi[index] = values[i+1];
+            }
+            else{
+                mini[index] = values[i+1];
+                maxi[index] = values[i];
+            }
+            index++;
+            i += 2;
+        }
+
+        int[] result = new int[2];
+        result[0] = Sort.findMinInt(mini);
+        result[1] = Sort.findMaxInt(maxi);
+        if (i < values.length){
+            if(values[i] < result[0]){
+                result[0] = values[i];
+            }
+            if(values[i] > result[1]){
+                result[1] = values[i];
+            }
+        }
+        return result;
     }
 }
